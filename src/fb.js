@@ -5,13 +5,13 @@
  // Your web app's Firebase configuration
 
     var firebaseConfig = {
-        apiKey: "AIzaSyAIVbtA1U4FqLWvotCOlPHP_8eHM7IMZ8s",
-        authDomain: "event-managment-30679.firebaseapp.com",
-        databaseURL: "https://event-managment-30679.firebaseio.com",
-        projectId: "event-managment-30679",
-        storageBucket: "event-managment-30679.appspot.com",
-        messagingSenderId: "275607799148",
-        appId: "1:275607799148:web:da0d2e32a03b364edf1f49"
+        apiKey: "",
+        authDomain: "",
+        databaseURL: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: ""
     
     
       };
