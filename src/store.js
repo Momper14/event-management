@@ -41,6 +41,7 @@ const store = new Vuex.Store({
   }, //hier kommen daten die wir speichern möchten, die alle Componente benutzen können!
   mutations: {
     setActiveCat(state, item) {
+<<<<<<< HEAD
         state.activeCat = item
       },
       ADD_EVENT(state, event) {
@@ -59,9 +60,29 @@ const store = new Vuex.Store({
         commit('ADD_EVENT', event)
         router.push("/")
       }
+=======
+      state.activeCat = item
+    },
+    ADD_EVENT(state, event) {
+      state.events.push(event)
+    },
+  },
+  getters: {
+    getEventById: state => id => {
+      return state.events.find(event => event.id === id)
+    },
+    getCategories: state => state.categories,
+    getUser: state => state.user
+  },
+  actions: {
+    createEvent({ commit }, event) {
+      //EventService.postEvent(event)
+      commit('ADD_EVENT', event)
+>>>>>>> 86b6cd736227fbd5aaba8b7992e316f12d85136c
     }
-  
-  
+  }
+
+
 })
 
 export default store;
