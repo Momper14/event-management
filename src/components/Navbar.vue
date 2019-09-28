@@ -2,8 +2,11 @@
    <nav>
        <v-toolbar flat app>
            <v-toolbar-title class="text-uppercase grey--text">
+               <a href="/" style="text-decoration: none" class="grey--text">
                <span class="font-weight-light">event</span>
                <span>managment</span>
+               </a>
+               
            </v-toolbar-title>
            <v-spacer> </v-spacer>
             <v-toolbar-items>
