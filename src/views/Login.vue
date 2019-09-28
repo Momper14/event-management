@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { db } from '@/fb'
+//import { db } from '@/fb'
 //import auth from '@/fb'
 
 export default {
@@ -58,7 +58,7 @@ export default {
         password: this.password
       };
       //var tmp = firebase.app().firestore().collection("users").add(user);
-      db.collection("users").add(user);
+      //db.collection("users").add(user);
 
       /*
       auth.createUserWithEmailAndPassword(this.email, this.password).then(() =>{
@@ -74,6 +74,8 @@ export default {
       //custom Console
       // eslint-disable-next-line
       console.log("submit()");
+      // eslint-disable-next-line
+      console.log(user)
       this.$router.push("/");
     },
     clear() {
