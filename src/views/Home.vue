@@ -6,7 +6,7 @@
           <v-row>
         <v-card max-width="344" class="mx-4 my-4" v-for="event in events" :key="event.name">
         <v-list-item>
-          <v-list-item-avatar color="grey">{{event.startDay}} <br> {{event.startTime}}</v-list-item-avatar> 
+          <v-list-item-avatar color="grey">{{event.dateS}} <br> {{event.dateE}}</v-list-item-avatar> 
           <v-list-item-content>
             <v-list-item-title class="headline">{{event.title}}</v-list-item-title>
             <v-list-item-subtitle>by {{event.organizer}}</v-list-item-subtitle>

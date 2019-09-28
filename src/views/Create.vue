@@ -2,7 +2,7 @@
   <div class="EventCreat">
       <v-container>
           <v-card max-width="700" class="mx-auto my-auto" flat>
-               <v-form ref="form">
+               <v-form ref="form" @submit.prevent="createEvent">
                    <v-container px-6>
                        <h1>Basic Info</h1>
                        <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>

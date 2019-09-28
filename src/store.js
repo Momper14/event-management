@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+
+import router from './router'
 //import EventService from '@/services/EventService'
 
 Vue.use(Vuex)
@@ -43,6 +46,9 @@ const store = new Vuex.Store({
       ADD_EVENT(state, event) {
         state.events.push(event)
       },
+      SET_EVENT(state, event){
+          state.events= events
+      }
   },
   actions: {
       getEventById: state => id => {
@@ -51,6 +57,7 @@ const store = new Vuex.Store({
       createEvent({ commit }, event) {
         //EventService.postEvent(event)
         commit('ADD_EVENT', event)
+        router.push("/")
       }
     }
   
