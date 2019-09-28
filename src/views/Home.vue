@@ -20,7 +20,7 @@
         </v-card-text>
 
         <v-card-actions>
-          <form v-if = "!submitted">
+          <form>
           <v-btn v-on:click.prevent="post" text color="green accent-4"> Edit</v-btn>
           </form>
           

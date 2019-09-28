@@ -3,10 +3,10 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './router'
 import '@mdi/font/css/materialdesignicons.css'
-import { firestorePlugin } from 'vuefire'
+//import { firestorePlugin } from 'vuefire'
 import store from './store'
  
-Vue.use(firestorePlugin)
+//Vue.use(firestorePlugin)
 
 Vue.config.productionTip = false
 
