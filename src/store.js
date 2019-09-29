@@ -13,11 +13,36 @@ const store = new Vuex.Store({
     categories: ['sustainability', 'nature', 'animal welfare', 'housing', 'education', 'food', 'community'],
     events: [
       {
+<<<<<<< HEAD
         "name": 'Vacation',
         "details": 'Going to the beach!',
         "start": '2018-12-29',
         "end": '2019-01-01',
         "color": 'blue',
+=======
+        "id": 1,
+        "title": "Beach Cleanup",
+        "dateS": "2019-09-03",
+        "dateE": "2019-09-03",
+        "stime": "10:00",
+        "etime": "11:00",
+        "location": "Daytona Beach",
+        "description": "Let's clean up this beach.",
+        "organizer": "Adam Jahr",
+        "category": "sustainability"
+      },
+      {
+        "id": 2,
+        "title": "Park Cleanup",
+        "dateS": "2019-09-03",
+        "dateE": "2019-09-03",
+        "stime": "12:00",
+        "etime": "14:00",
+        "location": "132 N Magnolia Street, Orlando, Florida",
+        "description": "We're going to clean up this park.",
+        "organizer": "Adam Jahr",
+        "category": "nature"
+>>>>>>> 10227ae8304e68b99027a2345247cdeb2312669f
       }
 
     ],
