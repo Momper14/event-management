@@ -69,7 +69,6 @@
                   v-model="menu3"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="stime"
                   transition="scale-transition"
                   offset-y
                   full-width
@@ -83,7 +82,6 @@
                     v-if="menu3"
                     v-model="stime"
                     full-width
-                    @click:minute="$refs.menu3.save(stime)"
                   ></v-time-picker>
                 </v-menu>
               </v-col>
@@ -93,7 +91,7 @@
                   v-model="menu4"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="etime"
+                  
                   transition="scale-transition"
                   offset-y
                   full-width
@@ -113,7 +111,7 @@
                     v-if="menu4"
                     v-model="etime"
                     full-width
-                    @click:minute="$refs.menu3.save(etime)"
+                    
                   ></v-time-picker>
                 </v-menu>
               </v-col>

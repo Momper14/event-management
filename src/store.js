@@ -12,33 +12,40 @@ const store = new Vuex.Store({
     user: { id: 'abc123', name: 'Adam Jahr' },
     categories: ['sustainability', 'nature', 'animal welfare', 'housing', 'education', 'food', 'community'],
     events: [
+      
+
       {
+        "id": 1,
         "name": 'Vacation',
         "details": 'Going to the beach!',
+        "img": 'https://cdn.vuetifyjs.com/images/cards/mountain.jpg',
         "start": '2018-12-29',
         "end": '2019-01-01',
         "color": 'blue',
         "organizer": 'Adam Jahr',
       },
       {
-        name: 'Meeting',
-        details: 'Spending time on how we do not have enough time',
-        start: '2019-01-07 09:00',
-        end: '2019-01-07 09:30',
-        color: 'indigo',
-        organizer: 'Adam Jahr',
+        "id": 2,
+        "name": 'Meeting',
+        "details": 'Spending time on how we do not have enough time',
+        "start": '2019-01-07 09:00',
+        "end": '2019-01-07 09:30',
+        "color": 'indigo',
+        "organizer": 'Adam Jahr',
       },
       {
-        name: 'Large Event',
-        details: 'This starts in the middle of an event and spans over multiple events',
-        start: '2018-12-31',
-        end: '2019-01-04',
-        color: 'deep-purple',
-        organizer: 'Adam Jahr',
+        "id": 3,
+        "name": 'Large Event',
+        "details": 'This starts in the middle of an event and spans over multiple events',
+        "start": '2018-12-31',
+        "end": '2019-01-04',
+        "color": 'deep-purple',
+        "organizer": 'Adam Jahr',
         
       },
       {
-        name: '3rd to 7th',
+        "id": 4,
+        "name": '3rd to 7th',
         details: 'Testing',
         start: '2019-01-03',
         end: '2019-01-07',
@@ -46,6 +53,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 5,
         name: 'Big Meeting',
         details: 'A very important meeting about nothing',
         start: '2019-01-07 08:00',
@@ -54,6 +62,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 6,
         name: 'Another Meeting',
         details: 'Another important meeting about nothing',
         start: '2019-01-07 10:00',
@@ -62,6 +71,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 7,
         name: '7th to 8th',
         start: '2019-01-07',
         end: '2019-01-08',
@@ -69,6 +79,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 8,
         name: 'Lunch',
         details: 'Time to feed',
         start: '2019-01-07 12:00',
@@ -77,6 +88,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 9,
         name: '30th Birthday',
         details: 'Celebrate responsibly',
         start: '2019-01-03',
@@ -84,6 +96,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 10,
         name: 'New Year',
         details: 'Eat chocolate until you pass out',
         start: '2019-01-01',
@@ -92,6 +105,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 11,
         name: 'Conference',
         details: 'The best time of my life',
         start: '2019-01-21',
@@ -100,6 +114,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 12,
         name: 'Hackathon',
         details: 'Code like there is no tommorrow',
         start: '2019-01-30 23:00',
@@ -108,6 +123,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 12,
         name: 'event 1',
         start: '2019-01-14 18:00',
         end: '2019-01-14 19:00',
@@ -115,6 +131,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 14,
         name: 'event 2',
         start: '2019-01-14 18:00',
         end: '2019-01-14 19:00',
@@ -122,6 +139,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 15,
         name: 'event 5',
         start: '2019-01-14 18:00',
         end: '2019-01-14 19:00',
@@ -129,6 +147,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 16,
         name: 'event 3',
         start: '2019-01-14 18:30',
         end: '2019-01-14 20:30',
@@ -136,6 +155,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 15,
         name: 'event 4',
         start: '2019-01-14 19:00',
         end: '2019-01-14 20:00',
@@ -143,6 +163,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 16,
         name: 'event 6',
         start: '2019-01-14 21:00',
         end: '2019-01-14 23:00',
@@ -150,6 +171,7 @@ const store = new Vuex.Store({
         organizer: 'Adam Jahr',
       },
       {
+        "id": 17,
         name: 'event 7',
         start: '2019-01-14 22:00',
         end: '2019-01-14 23:00',
@@ -176,10 +198,6 @@ const store = new Vuex.Store({
       var index = state.events.findIndex(event => event.id == id)//it findes the place of item we are looking for
       state.events.splice(index, 1)
     },
-    /*EDIT_EVENT(state, id) {
-      var item = state.events.find(event => event.id == id)
-      state.events.set(item)
-    }*/
   },
   actions: {
     createEvent({ commit }, event) {

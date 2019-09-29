@@ -44,7 +44,7 @@
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="194"></v-img>
+                <v-img :src="event.img" height="194"></v-img>
 
                 <v-card-text>{{event.description}}</v-card-text>
 

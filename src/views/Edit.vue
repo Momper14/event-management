@@ -8,7 +8,7 @@
             <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
             <v-text-field
               outlined
-              v-model="event.title"
+              v-model="event.name"
               :counter="75"
               label="Event Title *"
               required
@@ -134,16 +134,7 @@ export default {
     };
   },
   methods: {
-    clear() {
-      this.event.title = "";
-      this.event.category = "";
-      this.event.organizer.name = "";
-      this.event.description = "";
-      this.event.dateS = null;
-      this.event.dateE = null;
-      this.event.stime = null;
-      this.event.etime = null;
-    },
+    
     getEventById(id) {
       if (id) {
         return this.$store.getters.getEventById(+id);

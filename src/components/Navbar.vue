@@ -11,7 +11,7 @@
            <v-spacer> </v-spacer>
             <v-toolbar-items> 
             <v-btn text>
-                <v-dialog v-model="dialog" persistent max-width="600px">
+                <v-dialog v-model="dialogDaily" max-width="600px">
                     <template v-slot:activator="{ on }">
                         <v-btn text v-on="on">Daily Calendar</v-btn>
                     </template>
@@ -24,13 +24,13 @@
                         </v-card-text>
                         <v-card-actions>
                         <div class="flex-grow-1"></div>
-                        <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialogDaily = false">Close</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
             </v-btn>
             <v-btn text>
-                 <v-dialog v-model="dialog" persistent max-width="600px">
+                 <v-dialog v-model="dialogWeekly" max-width="600px">
                     <template v-slot:activator="{ on }">
                         <v-btn text v-on="on">Weekly Calendar</v-btn>
                     </template>
@@ -43,7 +43,7 @@
                         </v-card-text>
                         <v-card-actions>
                         <div class="flex-grow-1"></div>
-                        <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialogWeekly = false">Close</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -66,7 +66,8 @@ export default {
     data(){
        return{
            cal_item: this.$store.state.cal_items,
-           dialog: false,
+           dialogDaily: false,
+           dialogWeekly: false,
            events: this.$store.state.events   
           
        } 
