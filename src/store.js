@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 
-import router from './router'
+
 //import EventService from '@/services/EventService'
 
 Vue.use(Vuex)
@@ -37,52 +37,51 @@ const store = new Vuex.Store({
         }
 
     ],
+    dates: ['Any date', 'today', 'this week', 'pick a date' ],
+    cal_items: ['Daily', 'Weekly'],
     activeCat: null
   }, //hier kommen daten die wir speichern möchten, die alle Componente benutzen können!
   mutations: {
     setActiveCat(state, item) {
-<<<<<<< HEAD
         state.activeCat = item
       },
       ADD_EVENT(state, event) {
         state.events.push(event)
       },
-      SET_EVENT(state, event){
+      SET_EVENT(state, events){
           state.events= events
-      }
-  },
-  actions: {
-      getEventById: state => id => {
-          return state.events.find(event => event.id === id)
       },
-      createEvent({ commit }, event) {
-        //EventService.postEvent(event)
-        commit('ADD_EVENT', event)
-        router.push("/")
-      }
-=======
-      state.activeCat = item
-    },
-    ADD_EVENT(state, event) {
-      state.events.push(event)
-    },
-  },
-  getters: {
-    getEventById: state => id => {
-      return state.events.find(event => event.id === id)
-    },
-    getCategories: state => state.categories,
-    getUser: state => state.user
+      DELETE_EVENT(state, id){
+       var index = state.events.findIndex(event => event.id == id)//it findes the place of item we are looking for
+        state.events.splice(index, 1)
+      },
+      /*EDIT_EVENT(state, id) {
+        var item = state.events.find(event => event.id == id)
+        state.events.set(item)
+      }*/
   },
   actions: {
-    createEvent({ commit }, event) {
-      //EventService.postEvent(event)
-      commit('ADD_EVENT', event)
->>>>>>> 86b6cd736227fbd5aaba8b7992e316f12d85136c
+      
+      createEvent({ commit }, event) {
+        commit('ADD_EVENT', event)
+      
+      },
+      deletEvent({commit} , id){
+          commit('DELETE_EVENT', id)
+      },
+      /*editEvent({commit}, id){
+          commit('EDIT_EVENT', id)
+      }*/
+    },
+
+  getters:{
+
+        getEventById: state => id => {
+            return state.events.find(event => event.id === id)
+        }
     }
-  }
-
-
+  
+  
 })
 
 export default store;

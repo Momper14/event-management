@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Create from './views/Create.vue'
+import Edit from './views/Edit.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 
@@ -20,6 +21,11 @@ export default new Router({
       path: '/create',
       name: 'create',
       component: Create
+     },
+     {
+      path: '/edit/:id',
+      name: 'edit',
+      component: Edit
      },
      {
        path: '/login',

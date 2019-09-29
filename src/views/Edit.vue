@@ -1,6 +1,6 @@
-<template >
-  <div class="EventCreat">
-      <v-container>
+<template>
+    <div class="Edit">
+        <v-container>
           <v-card max-width="700" class="mx-auto my-auto" flat>
                <v-form ref="form" @submit.prevent="createEvent">
                    <v-container px-6>
@@ -57,7 +57,7 @@
                             
                            <div class="flex-grow-1"></div>                           
                            <v-col cols="6" md="2">
-                                <v-btn class="mr-4" @click="createEvent">submit</v-btn>      
+                                <v-btn class="mr-4" @click="editEvent">Edit</v-btn>      
                            </v-col>
                            <v-col cols="6" md="2">
                                 <v-btn @click="clear">clear</v-btn>
@@ -67,25 +67,16 @@
             </v-form> 
           </v-card>
       </v-container>
-       
-  </div>
+    </div>
 </template>
 
 <script>
-//import { db } from '@/fb'
- //import { mapState } from 'vuex'
- //import moment from 'moment'
-//moment().format("dd, MMM D")
-
-
-
-export default {
-    
-    data() {
+    export default {
+        data() {
         return{
-            id: this.$route.query.id,  
-          categories: this.$store.state.categories,
-           event: this.createFreshEvent(),
+            id: this.$route.params.id,  
+           categories: this.$store.state.categories,
+           event: this.getEventById(),
            dateS: new Date().toISOString().substr(0, 10),
            dateE: new Date().toISOString().substr(0, 10),
            menu: false,
@@ -97,49 +88,8 @@ export default {
             };
        
         },
-computed:{   
-  },
-  created:{
-     
-      function(){
-
-        this.getEventById()
-
-      }
-  
-  },
-  methods: {
-      getEventById: function(){
-            //eslint-disable-next-line
-            console.log("Id is: "+this.id)
-          if (this.id != null)
-          this.event= this.$store.dispatch('getEventById', this.ids)
-      },
-     
-    createEvent() {
-        this.$store.dispatch('createEvent', this.event)
-        this.event= this.createFreshEvent()
-        this.$router.push("/")
-      },
-    setActiveCat(value){
-        this.store.commit('setActiveCat', value)
-    },
-    createFreshEvent() {
-          //const user = this.$store.state.user
-          const id = Math.floor(Math.random() * 10000000)
-          return {
-                id: id,
-                category: '',
-                organizer: '',
-                title: '',
-                description: '',
-                dateS: '',
-                dateE: '',
-                stime: '',
-                etime: ''
-          }
-        },
-        clear(){
+        methods:{
+            clear(){
             this.event.title = '',
             this.event.category = '',
             this.event.organizer.name = '',
@@ -150,8 +100,16 @@ computed:{
             this.event.etime = null
 
         },
-       
-
-}
-}
+        getEventById(){
+            //eslint-disable-next-line
+            console.log("Id is: "+this.id)
+          if (this.id != null)
+          this.event= this.$store.dispatch('getEventById', this.ids)
+      }
+        }
+    }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
