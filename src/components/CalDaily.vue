@@ -90,7 +90,7 @@
 
 <script>
    export default {
-     name:'CalDaily',
+    
     data: () => ({
       today: '2019-09-30',
       focus: '2019-01-01',
