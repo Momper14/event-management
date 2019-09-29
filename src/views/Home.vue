@@ -11,7 +11,7 @@
           max-height="500"
         >
           <v-container fluid style="padding: 10px ">
-            <v-row :align="end" justify="end" style=" padding: 70px">
+            <v-row align="end" justify="end" style=" padding: 70px">
               <form style="background-color: white; width:400px">
                 <v-container fluid style=" padding: 30px">
                   <p>I want to go out</p>
@@ -76,7 +76,9 @@ export default {
     return {
       categories: this.$store.state.categories,
       events: this.$store.state.events,
-      dates: this.$store.state.dates
+      dates: this.$store.state.dates,
+      select: "",
+      location: ""
     };
   },
   computed: {},

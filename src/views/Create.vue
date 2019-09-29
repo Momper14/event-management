@@ -14,7 +14,6 @@
               required
               placeholder="Be clear and descriptive."
             ></v-text-field>
-            <!--<v-select label="Category" outlined :value="$store.state.activeCat" @input="setActiveCat" :options="$store.state.categories"></v-select>-->
             <v-select
               outlined
               v-model="event.category"
@@ -194,14 +193,14 @@ export default {
       };
     },
     clear() {
-      (this.event.title = ""),
-        (this.event.category = ""),
-        (this.event.organizer.name = ""),
-        (this.event.description = ""),
-        (this.event.dateS = null),
-        (this.event.dateE = null),
-        (this.event.stime = null),
-        (this.event.etime = null);
+      this.event.title = "";
+      this.event.category = "";
+      this.event.organizer.name = "";
+      this.event.description = "";
+      this.event.dateS = null;
+      this.event.dateE = null;
+      this.event.stime = null;
+      this.event.etime = null;
     }
   }
 };

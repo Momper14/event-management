@@ -2,10 +2,10 @@
    <nav>
        <v-app-bar flat app>
            <v-toolbar-title class="text-uppercase grey--text">
-               <a href="/" style="text-decoration: none" class="grey--text">
+               <router-link to="/" style="text-decoration: none" class="grey--text">
                <span class="font-weight-light">event</span>
                <span>managment</span>
-               </a>
+               </router-link>
                
            </v-toolbar-title>
            <v-spacer> </v-spacer>
@@ -49,8 +49,8 @@
                 </v-dialog>
             </v-btn>
            
-            <v-btn href="/create" text>Create Event</v-btn>
-            <v-btn href="/login" text>Sign In</v-btn>
+            <v-btn to="/create" text>Create Event</v-btn>
+            <v-btn to="/login" text>Sign In</v-btn>
       </v-toolbar-items>
        </v-app-bar>
    </nav>
