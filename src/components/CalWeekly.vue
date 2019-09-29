@@ -90,23 +90,26 @@
 
 <script>
    export default {
-    data: () => ({
-      today: '2019-09-30',
-      focus: '2019-01-01',
-      type: 'month',
-      typeToLabel: {
-        month: 'Month',
-        week: 'Week',
-        day: 'Day',
-        '4day': '4 Days',
-      },
-      start: null,
-      end: null,
-      selectedEvent: {},
-      selectedElement: null,
-      selectedOpen: false,
-      events:this.$store.state.events,
-    }),
+    data(){
+      return{
+          today: '2019-09-30',
+          focus: '2019-01-01',
+          type: 'month',
+          typeToLabel: {
+            month: 'Month',
+            week: 'Week',
+            day: 'Day',
+            '4day': '4 Days',
+          },
+          start: null,
+          end: null,
+          selectedEvent: {},
+          selectedElement: null,
+          selectedOpen: false,
+          events:this.$store.state.events,
+      }
+     
+    },
     computed: {
       title () {
         const { start, end } = this

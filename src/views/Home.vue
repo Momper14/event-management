@@ -15,10 +15,10 @@
               <form style="background-color: white; width:400px">
                 <v-container fluid style=" padding: 30px">
                   <p>I want to go out</p>
-                  <v-select v-model="select" :items="dates" label="Any Date" required></v-select>
-                  <v-text-field v-model="location" label="In"></v-text-field>
+                  <v-select :items="dates" label="Any Date" required></v-select>
+                  <v-text-field label="In"></v-text-field>
                   <p>And I'm in the mood for</p>
-                  <v-select v-model="category" :items="items" label="Anything"></v-select>
+                  <v-select :items="categories" label="Anything"></v-select>
                   <v-btn class="px-4; mx-4" @click="submit">submit</v-btn>
                 </v-container>
               </form>
@@ -34,12 +34,12 @@
               <v-card max-width="300" class="mx-4 my-4" v-for="event in events" :key="event.name">
                 <v-list-item>
                   <v-list-item-avatar color="grey">
-                    {{event.dateS}}
+                    {{event.start}}
                     <br />
                     {{event.stime}}
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title class="headline">{{event.title}}</v-list-item-title>
+                    <v-list-item-title class="headline">{{event.name}}</v-list-item-title>
                     <v-list-item-subtitle>by {{event.organizer}}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
