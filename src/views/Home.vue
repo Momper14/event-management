@@ -29,14 +29,11 @@
 
       <v-container style="padding-left: 5%">
         <v-row>
-          <v-cols cols="12" sm="4">
             <v-row>
               <v-card max-width="300" class="mx-4 my-4" v-for="event in events" :key="event.name">
                 <v-list-item>
                   <v-list-item-avatar color="grey">
                     {{event.start}}
-                    <br />
-                    {{event.stime}}
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title class="headline">{{event.name}}</v-list-item-title>
@@ -62,7 +59,6 @@
                 </v-card-actions>
               </v-card>
             </v-row>
-          </v-cols>
         </v-row>
       </v-container>
     </v-container>
@@ -93,6 +89,9 @@ export default {
       console.log("edit was called!");
       this.$router.push("/edit/" + event.id);
       //this.$store.dispatch('editEvent', event.id)
+    },
+    submit() {
+     // TODO: handle submit 
     }
   }
 };

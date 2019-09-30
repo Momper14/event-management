@@ -8,57 +8,45 @@
             <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
             <v-text-field
               outlined
-              v-model="event.title"
+              v-model="event.name"
               :counter="75"
               label="Event Title *"
               required
               placeholder="Be clear and descriptive."
             ></v-text-field>
-            <v-select
+<!--             <v-select
               outlined
               v-model="event.category"
               label="category"
               :items="$store.state.categories"
-            ></v-select>
+            ></v-select> -->
             <v-text-field
               outlined
-              v-model="event.organizer.name"
+              v-model="event.organizer"
               label="Organizer"
               placeholder="Tell attendees who is organizing this event."
             ></v-text-field>
-            <v-textarea outlined label="Description" v-model="event.description"></v-textarea>
+            <v-textarea outlined label="Description" v-model="event.details"></v-textarea>
             <h1>Date and time</h1>
             <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
             <v-row>
               <v-col cols="6" sm="6" md="6">
-                <v-menu
-                  v-model="menu"
-                  transition="scale-transition"
-                  offset-y
-                  full-width
-                  min-width="290px"
-                >
+                <v-menu v-model="menu" transition="scale-transition" offset-y min-width="290px">
                   <template v-slot:activator="{ on }">
-                    <v-text-field outlined :value="dateS" label="Event Starts" readonly v-on="on"></v-text-field>
+                    <v-text-field outlined :value="startDate" label="Event Starts" readonly v-on="on"></v-text-field>
                   </template>
 
-                  <v-date-picker v-model="dateS" @input="menu = false" no-title scrollable>
+                  <v-date-picker v-model="startDate" @input="menu = false" no-title scrollable>
                     <div class="flex-grow-1"></div>
                   </v-date-picker>
                 </v-menu>
               </v-col>
               <v-col cols="6" sm="6" md="6">
-                <v-menu
-                  v-model="menu2"
-                  transition="scale-transition"
-                  offset-y
-                  full-width
-                  min-width="290px"
-                >
+                <v-menu v-model="menu2" transition="scale-transition" offset-y min-width="290px">
                   <template v-slot:activator="{ on }">
-                    <v-text-field :value="dateE" label="Event Ends" readonly v-on="on" outlined></v-text-field>
+                    <v-text-field :value="endDate" label="Event Ends" readonly v-on="on" outlined></v-text-field>
                   </template>
-                  <v-date-picker v-model="dateE" @input="menu = false" no-title scrollable>
+                  <v-date-picker v-model="endDate" @input="menu = false" no-title scrollable>
                     <div class="flex-grow-1"></div>
                   </v-date-picker>
                 </v-menu>
@@ -71,18 +59,13 @@
                   :nudge-right="40"
                   transition="scale-transition"
                   offset-y
-                  full-width
                   max-width="290px"
                   min-width="290px"
                 >
                   <template v-slot:activator="{ on }">
-                    <v-text-field v-model="stime" label="Start Time" readonly outlined v-on="on"></v-text-field>
+                    <v-text-field v-model="startTime" label="Start Time" readonly outlined v-on="on"></v-text-field>
                   </template>
-                  <v-time-picker
-                    v-if="menu3"
-                    v-model="stime"
-                    full-width
-                  ></v-time-picker>
+                  <v-time-picker v-if="menu3" v-model="startTime"></v-time-picker>
                 </v-menu>
               </v-col>
               <v-col cols="6" sm="6" md="6">
@@ -91,28 +74,21 @@
                   v-model="menu4"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  
                   transition="scale-transition"
                   offset-y
-                  full-width
                   max-width="290px"
                   min-width="290px"
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field
-                      v-model="event.etime"
+                      v-model="endTime"
                       label="End Time"
                       readonly
                       outlined
                       v-on="on"
                     ></v-text-field>
                   </template>
-                  <v-time-picker
-                    v-if="menu4"
-                    v-model="etime"
-                    full-width
-                    
-                  ></v-time-picker>
+                  <v-time-picker v-if="menu4" v-model="endTime"></v-time-picker>
                 </v-menu>
               </v-col>
 
@@ -142,59 +118,79 @@ export default {
     return {
       id: this.$route.query.id,
       categories: this.$store.state.categories,
-      event: this.createFreshEvent(),
-      dateS: new Date().toISOString().substr(0, 10),
-      dateE: new Date().toISOString().substr(0, 10),
+      event: {
+        id: Math.floor(Math.random() * 10000000),
+        //category: "",
+        //organizer: "",
+        name: "",
+        details: "",
+        start: new Date()
+          .toISOString()
+          .substr(0, 16)
+          .replace("T", " "),
+        end: new Date()
+          .toISOString()
+          .substr(0, 16)
+          .replace("T", " "),
+        color: "indigo"
+      },
       menu: false,
       menu2: false,
       menu3: false,
-      menu4: false,
-      stime: "",
-      etime: ""
+      menu4: false
     };
   },
-  computed: {},
-  created: {
-    function() {
-      this.getEventById();
+  computed: {
+    startDate: {
+      get: function() {
+        return this.getDate(this.event.start);
+      },
+      set: function(val) {
+        this.event.start = val + " " + this.getTime(this.event.start);
+      }
+    },
+    startTime: {
+      get: function() {
+        return this.getTime(this.event.start);
+      },
+      set: function(val) {
+        this.event.start = this.getDate(this.event.start) + " " + val;
+      }
+    },
+    endDate: {
+      get: function() {
+        return this.getDate(this.event.end);
+      },
+      set: function(val) {
+        this.event.end = val + " " + this.getTime(this.event.end);
+      }
+    },
+    endTime: {
+      get: function() {
+        return this.getTime(this.event.end);
+      },
+      set: function(val) {
+        this.event.end = this.getDate(this.event.end) + " " + val;
+      }
     }
   },
   methods: {
-    getEventById: function() {
-      //eslint-disable-next-line
-      console.log("Id is: " + this.id);
-      if (this.id != null)
-        this.event = this.$store.dispatch("getEventById", this.ids);
+    getDate(timmestamp) {
+      return timmestamp.split(" ")[0];
     },
-
+    getTime(timmestamp) {
+      let time = timmestamp.split(" ")[1];
+      return time != undefined ? time : "00:00";
+    },
     createEvent() {
       this.$store.dispatch("createEvent", this.event);
-      this.event = this.createFreshEvent();
       this.$router.push("/");
     },
-    setActiveCat(value) {
-      this.store.commit("setActiveCat", value);
-    },
-    createFreshEvent() {
-      //const user = this.$store.state.user
-      const id = Math.floor(Math.random() * 10000000);
-      return {
-        id: id,
-        category: "",
-        organizer: "",
-        title: "",
-        description: "",
-        dateS: "",
-        dateE: "",
-        stime: "",
-        etime: ""
-      };
-    },
     clear() {
-      this.event.title = "";
-      this.event.category = "";
+      this.event.name = "";
+      //this.event.category = "";
       this.event.organizer.name = "";
-      this.event.description = "";
+      this.event.details = "";
       this.event.dateS = null;
       this.event.dateE = null;
       this.event.stime = null;

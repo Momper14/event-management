@@ -10,23 +10,23 @@
               outlined
               v-model="event.name"
               :counter="75"
-              label="Event Title *"
+              label="Event Name"
               required
               placeholder="Be clear and descriptive."
             ></v-text-field>
-            <v-select
+            <!--             <v-select
               outlined
               v-model="event.category"
               label="category"
               :items="$store.state.categories"
-            ></v-select>
+            ></v-select>-->
             <v-text-field
               outlined
               v-model="event.organizer"
               label="Organizer"
               placeholder="Tell attendees who is organizing this event."
             ></v-text-field>
-            <v-textarea outlined label="Description" v-model="event.description"></v-textarea>
+            <v-textarea outlined label="Details" v-model="event.details"></v-textarea>
             <h1>Date and time</h1>
             <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
             <v-row>
@@ -35,14 +35,14 @@
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       outlined
-                      :value="event.dateS"
+                      :value="startDate"
                       label="Event Starts"
                       readonly
                       v-on="on"
                     ></v-text-field>
                   </template>
 
-                  <v-date-picker v-model="event.dateS" @input="menu = false" no-title scrollable>
+                  <v-date-picker v-model="startDate" @input="menu = false" no-title scrollable>
                     <div class="flex-grow-1"></div>
                   </v-date-picker>
                 </v-menu>
@@ -50,15 +50,9 @@
               <v-col cols="6" sm="6" md="6">
                 <v-menu v-model="menu2" transition="scale-transition" offset-y min-width="290px">
                   <template v-slot:activator="{ on }">
-                    <v-text-field
-                      :value="event.dateE"
-                      label="Event Ends"
-                      readonly
-                      v-on="on"
-                      outlined
-                    ></v-text-field>
+                    <v-text-field :value="endDate" label="Event Ends" readonly v-on="on" outlined></v-text-field>
                   </template>
-                  <v-date-picker v-model="event.dateE" @input="menu = false" no-title scrollable>
+                  <v-date-picker v-model="endDate" @input="menu = false" no-title scrollable>
                     <div class="flex-grow-1"></div>
                   </v-date-picker>
                 </v-menu>
@@ -76,14 +70,14 @@
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field
-                      v-model="event.stime"
+                      v-model="startTime"
                       label="Start Time"
                       readonly
                       outlined
                       v-on="on"
                     ></v-text-field>
                   </template>
-                  <v-time-picker v-if="menu3" v-model="event.stime"></v-time-picker>
+                  <v-time-picker v-if="menu3" v-model="startTime"></v-time-picker>
                 </v-menu>
               </v-col>
               <v-col cols="6" sm="6" md="6">
@@ -98,15 +92,9 @@
                   min-width="290px"
                 >
                   <template v-slot:activator="{ on }">
-                    <v-text-field
-                      v-model="event.etime"
-                      label="End Time"
-                      readonly
-                      outlined
-                      v-on="on"
-                    ></v-text-field>
+                    <v-text-field v-model="endTime" label="End Time" readonly outlined v-on="on"></v-text-field>
                   </template>
-                  <v-time-picker v-if="menu4" v-model="event.etime"></v-time-picker>
+                  <v-time-picker v-if="menu4" v-model="endTimee"></v-time-picker>
                 </v-menu>
               </v-col>
 
@@ -133,8 +121,48 @@ export default {
       menu4: false
     };
   },
+  computed: {
+    startDate: {
+      get: function() {
+        return this.getDate(this.event.start);
+      },
+      set: function(val) {
+        this.event.start = val + " " + this.getTime(this.event.start);
+      }
+    },
+    startTime: {
+      get: function() {
+        return this.getTime(this.event.start);
+      },
+      set: function(val) {
+        this.event.start = this.getDate(this.event.start) + " " + val;
+      }
+    },
+    endDate: {
+      get: function() {
+        return this.getDate(this.event.end);
+      },
+      set: function(val) {
+        this.event.end = val + " " + this.getTime(this.event.end);
+      }
+    },
+    endTime: {
+      get: function() {
+        return this.getTime(this.event.end);
+      },
+      set: function(val) {
+        this.event.end = this.getDate(this.event.end) + " " + val;
+      }
+    }
+  },
   methods: {
-    
+    getDate(timmestamp) {
+      return timmestamp.split(" ")[0];
+    },
+    getTime(timmestamp) {
+      let time = timmestamp.split(" ")[1];
+      return time != undefined ? time : "00:00";
+    },
     getEventById(id) {
       if (id) {
         return this.$store.getters.getEventById(+id);
